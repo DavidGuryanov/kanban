@@ -21,30 +21,47 @@ export enum Priorities {
 }
 
 export enum Tags {
-    web = 'Web',
-    mobile = 'Mobile',
-    ios = 'iOS',
-    windows = 'Windows',
-    react = 'React'
+  web = "Web",
+  mobile = "Mobile",
+  ios = "iOS",
+  windows = "Windows",
+  react = "React",
 }
 
 export enum Icons {
-  check = 'check',
-  cancel = 'cancel',
-  edit = 'edit',
+  check = "check",
+  cancel = "cancel",
+  edit = "edit",
 }
 
 export interface ITask {
-    title: string;
-    body: string;
-    priority: Priorities;
-    tags: Tags[];
-    status: Status;
-    date: Date;
-    id: number;
-    authorId: number;
+  title: string;
+  body: string;
+  priority: Priorities;
+  tags: Tags[];
+  status: Status;
+  date: Date;
+  id: number;
+  authorId: number;
 }
 
 export interface ITaskProps {
-  taskData: ITask
+  taskData: ITask;
+}
+
+export interface ICardPopupProps {
+  taskData: ITask;
+  taskIndexInList: number;
+}
+
+export enum InputVariants {
+  title = "title",
+  text = "text",
+}
+
+export interface InputProps {
+  value: string;
+  field: string;
+  onChange: (field: string, value: string) => void;
+  variant: InputVariants;
 }

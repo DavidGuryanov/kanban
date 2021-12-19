@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
-import { TaskCard } from "../TaskCard";
+import CardPopup from "../CardPopup";
 
 import { popupState, tasksListState } from "../../utils/recoil";
 import emptyTask from "../../data/emptyTask";
@@ -15,8 +15,6 @@ import {
   PopupWindowTitle,
 } from "./styles";
 import { TaskTitle } from "../Task/styles";
-
-
 
 const Popup = () => {
   const [popupTaskState, setPopupTaskState] = useRecoilState(popupState);
@@ -65,10 +63,13 @@ const Popup = () => {
             </TaskTitle>
           </PopupWindowTitle>
         </PopupWindowHeader>
-        <TaskCard taskData={selectedTask} taskIndexInList={selectedTaskIndex} />
+        <CardPopup
+          taskData={selectedTask}
+          taskIndexInList={selectedTaskIndex}
+        />
       </PopupWindow>
     </PopupBackdrop>
   );
 };
 
-export default Popup
+export default Popup;

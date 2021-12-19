@@ -41,12 +41,12 @@ export const PriorityBubble = styled.span<{ type: Priorities }>`
   display: block;
 `;
 
-export const TaskTitle = styled.h4<{noMargin?: boolean}>`
+export const TaskTitle = styled.h4<{ noMargin?: boolean }>`
   font-weight: 500;
   font-size: 1.1em;
   line-height: 18px;
   color: #221c1d;
-  margin-bottom: ${({noMargin }) => noMargin ? '0px' : '8px'};
+  margin-bottom: ${({ noMargin }) => (noMargin ? "0px" : "8px")};
   cursor: pointer;
 `;
 
@@ -67,8 +67,7 @@ export const Tag = styled.li<{ type: Tags; selected?: boolean }>`
   background-color: ${({ type }) => tagsColorMap[type].bg};
   color: ${({ type }) => tagsColorMap[type].text};
   display: inline-block;
-  opacity: ${({ selected }) =>
-      selected ? 1 : 0.5};
+  opacity: ${({ selected }) => (selected ? 1 : 0.5)};
   padding: 4px;
   border-radius: 4px;
   margin-right: 8px;

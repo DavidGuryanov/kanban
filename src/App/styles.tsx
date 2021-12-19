@@ -1,4 +1,4 @@
-import {styled} from "@linaria/react";
+import { styled } from "@linaria/react";
 
 export const BoardWrapper = styled.div`
   background-color: #f8f8f8;
@@ -27,4 +27,4 @@ export const ColumnsWrapper = styled.main`
     justify-content: space-around;
   }
   overflow: scroll;
-`
+`;

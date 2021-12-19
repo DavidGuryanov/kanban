@@ -1,5 +1,5 @@
-import {Priorities, Status, Tags} from "../types/domain";
-import {getRandomNumber} from "../utils";
+import { Priorities, Status, Tags } from "../types/domain";
+import { getRandomNumber } from "../utils";
 
 const tasks = [
   {
@@ -124,4 +124,4 @@ const tasks = [
   // },
 ];
 
-export default tasks
+export default tasks;

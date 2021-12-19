@@ -41,9 +41,9 @@ export const PopupWindowHeader = styled.header`
 `;
 
 export const PopupWindowTitle = styled.div`
-    margin-left: auto;
-    margin-right: auto;
-`
+  margin-left: auto;
+  margin-right: auto;
+`;
 
 export const DotsWrapper = styled.div`
   display: flex;
@@ -70,15 +70,6 @@ export const Dot = styled.button`
       font-weight: 600;
       font-size: 1.2em;
       padding-top: 1px;
-    }
-    @media (max-width: 650px) {
-      &::before {
-        content: "✕";
-        color: #750201;
-        font-weight: 600;
-        font-size: 1.2em;
-        padding-top: 1px;
-      }
     }
   }
 `;

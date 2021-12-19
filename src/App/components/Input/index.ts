@@ -1,1 +1,1 @@
-export { StyledInput } from './Input'
+export { StyledInput } from "./Input";

@@ -3,7 +3,7 @@ import { Icons, Priorities, Status, Tags } from "../../types/domain";
 import { prioritiesColorMap, tagsColorMap } from "../Task/styles";
 import checkIcon from "./img/checkmark.svg";
 import cancelIcon from "./img/cancel.svg";
-import changeIcon from "./img/change2.svg";
+import changeIcon from "./img/change.svg";
 
 const iconsMap = {
   [Icons.check]: checkIcon,
@@ -11,7 +11,7 @@ const iconsMap = {
   [Icons.edit]: changeIcon,
 };
 
-export const PopupContent = styled.div`
+export const PopupContent = styled.section`
   height: 100%;
   margin: 10px 10px 35px 10px;
   display: flex;
@@ -20,21 +20,23 @@ export const PopupContent = styled.div`
 `;
 
 export const StyledSelect = styled.select<{ type: Priorities | Status }>`
-  background-color: ${({ type }) => type ? prioritiesColorMap[type].bg : '#ffbd2e'};
-  color: ${({ type }) => type ? prioritiesColorMap[type].text : '#a46306'};
-  padding: 2px 0px;
+  background-color: ${({ type }) =>
+    type ? prioritiesColorMap[type].bg : "#ffbd2e"};
+  color: ${({ type }) => (type ? prioritiesColorMap[type].text : "#a46306")};
+  padding: 2px 0;
   text-align: center;
   border: none;
   border-radius: 20px;
   width: fit-content;
   font-size: 0.8em;
   margin-bottom: 8px;
+
   &:focus {
     outline: none;
   }
 `;
 
-export const FieldWrapper = styled.div`
+export const FieldWrapper = styled.form`
   width: 100%;
   display: flex;
   align-items: center;
@@ -74,29 +76,20 @@ export const TagsSection = styled.div`
   align-items: center;
 `;
 
-export const TagsWrapper = styled.ul`
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around; */
-`;
+export const TagsWrapper = styled.ul``;
 
 export const Tag = styled.li<{ type: Tags; selected?: boolean }>`
   background-color: ${({ type }) => tagsColorMap[type].bg};
   color: ${({ type }) => tagsColorMap[type].text};
-  /* border: dashed 2px
-    ${({ selected, type }) =>
-    selected ? tagsColorMap[type].text : "transparent"}; */
   display: inline-block;
   opacity: ${({ selected }) => (selected ? 1 : 0.5)};
   padding: 4px;
   border-radius: 4px;
   margin-right: 8px;
-  /* margin-bottom: 5px; */
   cursor: pointer;
 `;
 
-export const ChangeIcon = styled.div<{ type: Icons }>`
+export const ControlButton = styled.span<{ type: Icons }>`
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -108,6 +101,7 @@ export const ChangeIcon = styled.div<{ type: Icons }>`
   cursor: pointer;
   transition: transform 0.5s;
   background-repeat: no-repeat;
+
   &:hover {
     transform: scale(1.1);
   }
@@ -138,25 +132,22 @@ export const UserPhoto = styled.img`
   border: solid #dedede 2px;
 `;
 
-
 export const SaveChangesButton = styled.button`
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #29c542;
-    width: 100%;
-    height: 30px;
-    color: #016201;
-    /* padding: 5px; */
-    font-family: inherit;
-    cursor: pointer;
-    opacity: 0.9;
-    &:disabled {
-        background-color: #e1ddd9;
-        color: #7d7d7d;
-        cursor: default;
-        
-    }
-`
+  border: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #29c542;
+  width: 100%;
+  height: 30px;
+  color: #016201;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0.9;
+
+  &:disabled {
+    background-color: #e1ddd9;
+    color: #7d7d7d;
+    cursor: default;
+  }
+`;

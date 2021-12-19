@@ -1,5 +1,5 @@
-import {styled} from "@linaria/react";
-import {TaskWrapper} from "../Task/styles";
+import { styled } from "@linaria/react";
+import { TaskWrapper } from "../Task/styles";
 
 export const ColumnWrapper = styled.section`
   width: 300px;
@@ -9,7 +9,7 @@ export const ColumnWrapper = styled.section`
   }
 
   @media (max-width: 650px) {
-    min-width: calc(100vw - 40px)
+    min-width: calc(100vw - 40px);
   }
 `;
 
@@ -31,4 +31,4 @@ export const AddNewTaskBtn = styled(TaskWrapper)`
   &:nth-child(2) {
     margin-top: 16px;
   }
-`
+`;

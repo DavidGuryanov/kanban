@@ -1,17 +1,6 @@
 import React from "react";
 import { TextInput, TitleInput } from "./styles";
-
-export enum InputVariants {
-  title = "title",
-  text = "text",
-}
-
-interface InputProps {
-  value: string;
-  field: string;
-  onChange: (field: string, value: string) => void;
-  variant: InputVariants;
-}
+import { InputProps, InputVariants } from "../../types/domain";
 
 export const StyledInput = ({
   value,
@@ -27,7 +16,7 @@ export const StyledInput = ({
           value={value}
           onChange={(evt) => onChange(field, evt.target.value)}
           placeholder="Task title"
-        ></TitleInput>
+        />
       );
     case InputVariants.text:
       return (
@@ -36,7 +25,7 @@ export const StyledInput = ({
           value={value}
           onChange={(evt) => onChange(field, evt.target.value)}
           placeholder="Task description"
-        ></TextInput>
+        />
       );
 
     default:
