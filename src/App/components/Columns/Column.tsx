@@ -9,6 +9,7 @@ import {
     popupState,
     tasksListState,
 } from "../../utils/recoil";
+import { Task } from "../Task";
 import {ColumnTitle, ColumnWrapper, AddNewTaskBtn} from "./styles";
 import {replaceItemAtIndex} from "../../utils";
 
@@ -49,7 +50,7 @@ export const Columns = ({columnsData}: ColumnsProps) => {
                         >
                             <ColumnTitle>{column.columnTitle}</ColumnTitle>
                             {filterTasks(tasksList, column.columnTitle).map((task) => (
-                                <p>Task goes here</p>
+                                <Task data={task} key={task.id}/>
                             ))}
                             <AddNewTaskBtn
                                 onClick={() => {
