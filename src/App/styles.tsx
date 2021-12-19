@@ -2,12 +2,11 @@ import {styled} from "@linaria/react";
 
 export const BoardWrapper = styled.div`
   background-color: #f8f8f8;
-  margin: 15px 15px 0 15px;
   font-family: "Poppins", sans-serif;
   color: #221c1d;
-  height: calc(100% - 55px);
   border-radius: 12px;
   padding: 20px;
+  min-height: 100%;
 `;
 
 export const BoardTitle = styled.h1`
@@ -20,9 +19,12 @@ export const BoardSubTitle = styled.h2`
   margin-bottom: 1em;
 `;
 
-export const ColumnsWrapper = styled.div`
+export const ColumnsWrapper = styled.main`
   display: flex;
   flex-direction: row;
-  /* height: 100%; */
-  justify-content: space-around;
+  padding-bottom: 15px;
+  @media (min-width: 650px) {
+    justify-content: space-around;
+  }
+  overflow: scroll;
 `

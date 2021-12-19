@@ -1,6 +1,5 @@
 import {useEffect} from "react";
 import {atom, useRecoilSnapshot} from "recoil";
-import {Status} from "../types/domain";
 import tasks from "../data/defaultTasks";
 
 export const popupState = atom({
@@ -11,11 +10,6 @@ export const popupState = atom({
 export const tasksListState = atom({
     key: "tasksListState",
     default: tasks,
-});
-
-export const tasksFilterState = atom({
-    key: "tasksFilterState",
-    default: Status.todo,
 });
 
 export function DebugObserver() {

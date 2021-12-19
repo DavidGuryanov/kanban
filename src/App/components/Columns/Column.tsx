@@ -1,60 +1,38 @@
 import React from "react";
-import {useRecoilState} from "recoil";
-import {
-    ColumnsProps,
-    ITask,
-    Status,
-} from "../../types/domain";
-import {
-    popupState,
-    tasksListState,
-} from "../../utils/recoil";
-import { Task } from "../Task";
-import {ColumnTitle, ColumnWrapper, AddNewTaskBtn} from "./styles";
-import {replaceItemAtIndex} from "../../utils";
+import {useRecoilState, useSetRecoilState} from "recoil";
+import {ColumnsProps} from "../../types/domain";
+import {popupState, tasksListState,} from "../../utils/recoil";
+import {Task} from "../Task";
+import {AddNewTaskBtn, ColumnTitle, ColumnWrapper} from "./styles";
+import {getRandomNumber} from "../../utils";
+import {filterTasks, handleDropEvent} from "../Popup/utils";
 
 export const Columns = ({columnsData}: ColumnsProps) => {
     const [tasksList, setTasksList] = useRecoilState(tasksListState);
-    const filterTasks = (tasks: ITask[], columnTitle: Status) =>
-        tasks.filter((task) => task.status === columnTitle);
-    const [isOpen, setIsOpen] = useRecoilState(popupState);
-    const lastId = tasksList[tasksList.length - 1].id;
+    const setIsOpen = useSetRecoilState(popupState);
+
     return (
         <>
             {columnsData
-                .sort((aCol, bCol) => aCol.order - bCol.order)
                 .map((column) => {
+                    const {columnTitle} = column
                     return (
                         <ColumnWrapper
-                            key={column.columnTitle}
-                            onDragOver={(evt) => {
+                            key={columnTitle}
+                            onDragOver={(evt) =>
                                 evt.preventDefault()
-                            }}
-                            onDrop={(evt) => {
-                                const dragTaskId = evt.dataTransfer.getData("id");
-                                const selectedTaskIndex = tasksList.findIndex(
-                                    (task) => task.id === +dragTaskId
-                                );
-                                const newList = replaceItemAtIndex(
-                                    tasksList,
-                                    selectedTaskIndex,
-                                    {
-                                        ...tasksList[selectedTaskIndex],
-                                        status: column.columnTitle,
-                                    }
-                                );
-                                setTasksList(newList)
-
-                                console.log(evt.dataTransfer.getData("id"), " DROP");
-                            }}
+                            }
+                            onDrop={(evt) =>
+                                handleDropEvent(evt, tasksList, setTasksList, columnTitle)}
                         >
-                            <ColumnTitle>{column.columnTitle}</ColumnTitle>
-                            {filterTasks(tasksList, column.columnTitle).map((task) => (
+                            <ColumnTitle>{columnTitle}</ColumnTitle>
+                            {filterTasks(tasksList, columnTitle).map((task) =>
                                 <Task data={task} key={task.id}/>
-                            ))}
+                            )}
                             <AddNewTaskBtn
+                                as={'button'}
                                 onClick={() => {
-                                    setIsOpen({isOpen: true, taskId: lastId + 1});
+                                    setIsOpen({isOpen: true, taskId: getRandomNumber()});
                                 }}
                             >
                                 +

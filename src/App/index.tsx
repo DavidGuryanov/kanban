@@ -1,7 +1,5 @@
 import React from "react";
-import {
-    useRecoilState,
-} from "recoil";
+import {useRecoilValue} from "recoil";
 import {Columns} from "./components/Columns";
 import {Popup} from "./components/Popup";
 import {
@@ -14,13 +12,13 @@ import {popupState} from "./utils/recoil";
 import columns from "./data/defaultColumns";
 
 const App = () => {
-
-    const [isOpen, setIsOpen] = useRecoilState(popupState);
-
+    const isOpen = useRecoilValue(popupState)
     return (
         <BoardWrapper>
-            <BoardTitle>Simple board</BoardTitle>
-            <BoardSubTitle>to keep track of your work</BoardSubTitle>
+            <header>
+                <BoardTitle>Simple board</BoardTitle>
+                <BoardSubTitle>to keep track of your work</BoardSubTitle>
+            </header>
             <ColumnsWrapper>
                 <Columns columnsData={columns}/>
             </ColumnsWrapper>
