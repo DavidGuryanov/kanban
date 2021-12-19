@@ -1,33 +1,24 @@
 import React from "react";
-import {useRecoilState} from "recoil";
-import {ITaskProps, Tags} from "../../types/domain";
-import {formatDate} from "../../utils";
+import {useSetRecoilState} from "recoil";
+
 import {popupState} from "../../utils/recoil";
+import {ITaskProps} from "../../types/domain";
+import {formatDate} from "../../utils";
+
 import {
     PriorityBubble,
     Tag,
-    TagsWrapper,
+    TagsList,
     TaskBody,
     TaskCreationDate,
     TaskTitle,
     TaskWrapper,
 } from "./styles";
 
-export function renderTags(tags: Tags[]) {
-    return (
-        <TagsWrapper>
-            {tags.map((str) => (
-                <Tag type={str} key={str} selected={true}>
-                    {str}
-                </Tag>
-            ))}
-        </TagsWrapper>
-    );
-}
+const Task = ({taskData}: ITaskProps) => {
+    const {title, body, priority, date, id, tags} = taskData;
+    const setPopupState = useSetRecoilState(popupState);
 
-export const Task = ({data}: ITaskProps) => {
-    const {title, body, priority, status, date, id, authorId, tags} = data;
-    const [isOpen, setIsOpen] = useRecoilState(popupState);
     return (
         <TaskWrapper
             draggable
@@ -38,13 +29,20 @@ export const Task = ({data}: ITaskProps) => {
             <PriorityBubble type={priority}>
                 {priority}
             </PriorityBubble>
-            <TaskTitle onClick={() => setIsOpen({isOpen: true, taskId: data.id})}>
+            <TaskTitle onClick={() => setPopupState({isOpen: true, taskId: id})}>
                 {title}
             </TaskTitle>
             <TaskBody>{body}</TaskBody>
-            {tags ? renderTags(tags) : null}
+            <TagsList>
+                {tags.map((str) => (
+                    <Tag type={str} key={str} selected={true}>
+                        {str}
+                    </Tag>
+                ))}
+            </TagsList>
             <TaskCreationDate>{formatDate(date)}</TaskCreationDate>
         </TaskWrapper>
     );
 };
 
+export default Task

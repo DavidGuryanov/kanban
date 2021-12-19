@@ -1,15 +1,17 @@
 import React from "react";
 import {useRecoilState, useSetRecoilState} from "recoil";
-import {ColumnsProps} from "../../types/domain";
-import {popupState, tasksListState,} from "../../utils/recoil";
-import {Task} from "../Task";
-import {AddNewTaskBtn, ColumnTitle, ColumnWrapper} from "./styles";
-import {getRandomNumber} from "../../utils";
-import {filterTasks, handleDropEvent} from "../Popup/utils";
 
-export const Columns = ({columnsData}: ColumnsProps) => {
+import Task from "../Task";
+
+import {popupState, tasksListState,} from "../../utils/recoil";
+import {filterTasks, handleDropEvent} from "./utils";
+import {getRandomNumber} from "../../utils";
+import {ColumnsProps} from "../../types/domain";
+import {AddNewTaskBtn, ColumnTitle, ColumnWrapper} from "./styles";
+
+const Columns = ({columnsData}: ColumnsProps) => {
     const [tasksList, setTasksList] = useRecoilState(tasksListState);
-    const setIsOpen = useSetRecoilState(popupState);
+    const setPopupState = useSetRecoilState(popupState);
 
     return (
         <>
@@ -27,12 +29,12 @@ export const Columns = ({columnsData}: ColumnsProps) => {
                         >
                             <ColumnTitle>{columnTitle}</ColumnTitle>
                             {filterTasks(tasksList, columnTitle).map((task) =>
-                                <Task data={task} key={task.id}/>
+                                <Task taskData={task} key={task.id}/>
                             )}
                             <AddNewTaskBtn
                                 as={'button'}
                                 onClick={() => {
-                                    setIsOpen({isOpen: true, taskId: getRandomNumber()});
+                                    setPopupState({isOpen: true, taskId: getRandomNumber()});
                                 }}
                             >
                                 +
@@ -43,3 +45,5 @@ export const Columns = ({columnsData}: ColumnsProps) => {
         </>
     );
 };
+
+export default Columns

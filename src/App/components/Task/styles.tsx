@@ -27,9 +27,10 @@ export const TaskWrapper = styled.div`
   margin: 16px 0;
   padding: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  cursor: grab;
 `;
 
-export const PriorityBubble = styled.div<{ type: Priorities }>`
+export const PriorityBubble = styled.span<{ type: Priorities }>`
   background-color: ${({ type }) => prioritiesColorMap[type].bg};
   color: ${({ type }) => prioritiesColorMap[type].text};
   padding: 4px 8px;
@@ -37,6 +38,7 @@ export const PriorityBubble = styled.div<{ type: Priorities }>`
   width: fit-content;
   font-size: 0.8em;
   margin-bottom: 8px;
+  display: block;
 `;
 
 export const TaskTitle = styled.h4<{noMargin?: boolean}>`
@@ -45,6 +47,7 @@ export const TaskTitle = styled.h4<{noMargin?: boolean}>`
   line-height: 18px;
   color: #221c1d;
   margin-bottom: ${({noMargin }) => noMargin ? '0px' : '8px'};
+  cursor: pointer;
 `;
 
 export const TaskBody = styled.p`
@@ -58,25 +61,16 @@ export const TaskCreationDate = styled(TaskBody)`
   margin-top: 4px;
 `;
 
-export const TagsWrapper = styled.ul`
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around; */
-`;
+export const TagsList = styled.ul``;
 
 export const Tag = styled.li<{ type: Tags; selected?: boolean }>`
   background-color: ${({ type }) => tagsColorMap[type].bg};
   color: ${({ type }) => tagsColorMap[type].text};
-  /* border: dashed 2px
-    ${({ selected, type }) =>
-      selected ? tagsColorMap[type].text : "transparent"}; */
   display: inline-block;
   opacity: ${({ selected }) =>
       selected ? 1 : 0.5};
   padding: 4px;
   border-radius: 4px;
   margin-right: 8px;
-  /* margin-bottom: 5px; */
   cursor: pointer;
 `;

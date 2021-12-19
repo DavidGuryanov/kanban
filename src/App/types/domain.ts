@@ -46,5 +46,5 @@ export interface ITask {
 }
 
 export interface ITaskProps {
-  data: ITask
+  taskData: ITask
 }

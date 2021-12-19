@@ -1,6 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+
+import { TaskCard } from "../TaskCard";
+
 import { popupState, tasksListState } from "../../utils/recoil";
+import emptyTask from "../../data/emptyTask";
+
 import {
   Dot,
   DotsWrapper,
@@ -9,23 +14,11 @@ import {
   PopupWindowHeader,
   PopupWindowTitle,
 } from "./styles";
-import { TaskCard } from "../TaskCard";
-import { Priorities, Status, Tags } from "../../types/domain";
-import { getRandomNumber } from "../../utils";
 import { TaskTitle } from "../Task/styles";
 
-const emptyTask = {
-  title: "",
-  body: "",
-  priority: Priorities.medium,
-  status: Status.todo,
-  date: new Date(),
-  tags: [] as Tags[],
-  id: getRandomNumber(),
-  authorId: 14222,
-};
 
-export const Popup = () => {
+
+const Popup = () => {
   const [popupTaskState, setPopupTaskState] = useRecoilState(popupState);
   const tasksList = useRecoilValue(tasksListState);
   const selectedTaskIndex = tasksList.findIndex(
@@ -62,7 +55,7 @@ export const Popup = () => {
       <PopupWindow>
         <PopupWindowHeader>
           <DotsWrapper>
-            <Dot type="button" onClick={closePopup} />
+            <Dot onClick={closePopup} />
             <Dot />
             <Dot />
           </DotsWrapper>
@@ -72,9 +65,10 @@ export const Popup = () => {
             </TaskTitle>
           </PopupWindowTitle>
         </PopupWindowHeader>
-
         <TaskCard taskData={selectedTask} taskIndexInList={selectedTaskIndex} />
       </PopupWindow>
     </PopupBackdrop>
   );
 };
+
+export default Popup

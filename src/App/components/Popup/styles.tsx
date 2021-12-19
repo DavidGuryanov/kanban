@@ -10,11 +10,13 @@ export const PopupBackdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  &:focus-visible {
+    outline: none;
+  }
 `;
 
-export const PopupWindow = styled.div`
+export const PopupWindow = styled.article`
   min-width: 50%;
-  /* min-height: 50%; */
   max-width: 90%;
   max-height: 90%;
   overflow: hidden;
@@ -22,9 +24,12 @@ export const PopupWindow = styled.div`
   border-radius: 5px;
   box-shadow: 4px 4px 6px 2px rgb(78 78 78 / 21%);
   position: relative;
+  @media (max-width: 650px) {
+    min-width: calc(100vw - 20px);
+  }
 `;
 
-export const PopupWindowHeader = styled.div`
+export const PopupWindowHeader = styled.header`
   background-color: #ffffff;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -66,33 +71,14 @@ export const Dot = styled.button`
       font-size: 1.2em;
       padding-top: 1px;
     }
+    @media (max-width: 650px) {
+      &::before {
+        content: "✕";
+        color: #750201;
+        font-weight: 600;
+        font-size: 1.2em;
+        padding-top: 1px;
+      }
+    }
   }
 `;
-
-export const TaskTitlePopup = styled.h4`
-  font-weight: 500;
-  font-size: 1.3em;
-  line-height: 18px;
-  color: #221c1d;
-  margin: 15px 0;
-  padding-left: 8px;
-`;
-
-export const TaskBodyPopup = styled.p`
-  font-weight: 500;
-  font-size: 1.1em;
-  color: #221c1db0;
-  margin-bottom: 8px;
-  min-height: 110px;
-  padding: 8px;
-`;
-
-
-export const UserPhoto = styled.img`
-  width: 45px;
-  height: 45px;
-  border-radius: 25px;
-  margin-left: 10px;
-  border: solid #dedede 2px;
-`;
-
