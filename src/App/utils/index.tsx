@@ -8,3 +8,7 @@ export function formatDate(date: Date) {
 export function getRandomNumber(from = 0, to = 10000000) {
   return Math.random() * (to - from) + from;
 }
+
+export function replaceItemAtIndex(arr: any[], index: number, newValue: any) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
