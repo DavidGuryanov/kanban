@@ -6,14 +6,17 @@ import { ITaskProps } from "../../types/domain";
 import { formatDate } from "../../utils";
 
 import {
+  OpenTaskIcon,
   PriorityBubble,
   Tag,
   TagsList,
   TaskBody,
-  TaskCreationDate,
+  TaskCreationDate, TaskHeader,
   TaskTitle,
   TaskWrapper,
 } from "./styles";
+import eyeIcon from './img/eye.svg'
+
 
 const Task = ({ taskData }: ITaskProps) => {
   const { title, body, priority, date, id, tags } = taskData;
@@ -26,7 +29,10 @@ const Task = ({ taskData }: ITaskProps) => {
         evt.dataTransfer.setData("id", id.toString());
       }}
     >
-      <PriorityBubble type={priority}>{priority}</PriorityBubble>
+      <TaskHeader>
+        <PriorityBubble type={priority}>{priority}</PriorityBubble>
+        <OpenTaskIcon src={eyeIcon} onClick={() => setPopupState({ isOpen: true, taskId: id })}/>
+      </TaskHeader>
       <TaskTitle onClick={() => setPopupState({ isOpen: true, taskId: id })}>
         {title}
       </TaskTitle>

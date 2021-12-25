@@ -1,5 +1,5 @@
 import { styled } from "@linaria/react";
-import { Priorities, Status, Tags } from "../../types/domain";
+import {Priorities, Status, Tags} from "../../types/domain";
 
 export const prioritiesColorMap = {
   [Priorities.low]: { bg: "#B8EBB0", text: "#221C1D" },
@@ -30,6 +30,12 @@ export const TaskWrapper = styled.div`
   cursor: grab;
 `;
 
+export const TaskHeader = styled.header`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
 export const PriorityBubble = styled.span<{ type: Priorities }>`
   background-color: ${({ type }) => prioritiesColorMap[type].bg};
   color: ${({ type }) => prioritiesColorMap[type].text};
@@ -40,6 +46,12 @@ export const PriorityBubble = styled.span<{ type: Priorities }>`
   margin-bottom: 8px;
   display: block;
 `;
+
+export const OpenTaskIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`
 
 export const TaskTitle = styled.h4<{ noMargin?: boolean }>`
   font-weight: 500;
